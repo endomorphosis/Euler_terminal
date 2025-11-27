@@ -99,8 +99,12 @@ class YahooDataSource extends BaseDataSource {
   normalizeSymbol(symbol) {
     const upper = symbol.toUpperCase();
     // Convert crypto pairs like BTCUSDT to BTC-USD format
-    if (/^[A-Z]+USDT?$/.test(upper)) {
-      return upper.replace(/USDT?$/, '-USD');
+    if (/^[A-Z]+USDT$/.test(upper)) {
+      return upper.replace(/USDT$/, '-USD');
+    }
+    // Also handle USD suffix
+    if (/^[A-Z]+USD$/.test(upper)) {
+      return upper.replace(/USD$/, '-USD');
     }
     return upper;
   }

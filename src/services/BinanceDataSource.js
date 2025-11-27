@@ -72,8 +72,8 @@ class BinanceDataSource extends BaseDataSource {
    */
   supportsSymbol(symbol) {
     // Binance primarily supports crypto pairs
-    const cryptoPairs = /^[A-Z]+USDT?$|^[A-Z]+BTC$|^[A-Z]+ETH$|^[A-Z]+BNB$/i;
-    return cryptoPairs.test(symbol);
+    const cryptoPairs = /^[A-Z]+USDT$|^[A-Z]+USD$|^[A-Z]+BTC$|^[A-Z]+ETH$|^[A-Z]+BNB$/;
+    return cryptoPairs.test(symbol.toUpperCase());
   }
 
   /**

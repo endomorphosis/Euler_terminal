@@ -74,9 +74,15 @@ class TradingViewDataSource extends BaseDataSource {
   parseSymbol(symbol) {
     const upper = symbol.toUpperCase();
     
-    // Check if it's a crypto pair
-    if (/^[A-Z]+USDT?$/.test(upper)) {
-      const base = upper.replace(/USDT?$/, '');
+    // Check if it's a crypto pair with USDT
+    if (/^[A-Z]+USDT$/.test(upper)) {
+      const base = upper.replace(/USDT$/, '');
+      return { exchange: 'crypto', ticker: `${base}USD` };
+    }
+    
+    // Check if it's a crypto pair with USD
+    if (/^[A-Z]+USD$/.test(upper) && upper.length > 3) {
+      const base = upper.replace(/USD$/, '');
       return { exchange: 'crypto', ticker: `${base}USD` };
     }
     

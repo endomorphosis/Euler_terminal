@@ -19,6 +19,8 @@ function initialize() {
 
     db = new Database(config.dbPath);
     db.pragma('journal_mode = WAL');
+    db.pragma('synchronous = NORMAL');
+    db.pragma('cache_size = 10000');
     
     createTables();
     logger.info('Database initialized successfully', { path: config.dbPath });
